@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-card">
+        <div class="logo">
+            <i class="fas fa-shield-alt"></i>
+            <h1>CyberShield</h1>
+        </div>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-error">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <form method="POST" action="/login">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" placeholder="Enter your username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            
+            <button type="submit" class="btn-login">Login</button>
+            <p>New user? <a href="{{ url_for('signup') }}">Create an account</a></p>
+
+        </form>
+        
+        <div class="demo-credentials">
+            <p>Demo credentials:</p>
+            <p>Username: <strong>admin</strong></p>
+            <p>Password: <strong>password123</strong></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
